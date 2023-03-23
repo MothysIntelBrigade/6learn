@@ -14,7 +14,7 @@ export default function Layout({ children, ...props }: Props) {
             <Navbar />
             <div
             >{children}</div>
-            {/*<Footer />*/}
+            {<Footer />}
         </>
     )
 }

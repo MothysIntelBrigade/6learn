@@ -34,7 +34,7 @@ export function interpolate_dates(start_date, end_date, num_tick_marks) {
 export function getEODEquidistant(ticker, start, end, points) {
 
     let dates = interpolate_dates(start, end, points)
-    console.log(dates)
+
     let uri = `https://web.api.six-group.com/api/findata/v1/listings/marketData/eodTimeseries?scheme=TICKER_BC&ids=${ticker}&from=${start}&to=${end}`
     return query_six(uri).then(data => {
 
