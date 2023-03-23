@@ -7,7 +7,7 @@ export default function Navbar() {
         <div className="flex w-full fixed justify-between p-2 items-center h-16 bg-slate-100">
             <div>
                 <Link href="/">
-                    <Image src="/logo.png" alt="logo" width="64" height="64"/>
+                    <Image priority={true} src="/logo.png" alt="logo" height="64" width="64"/>
                 </Link>
             </div>
             <div

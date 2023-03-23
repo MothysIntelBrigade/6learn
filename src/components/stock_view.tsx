@@ -27,8 +27,8 @@ export function StockView(props: {showFull: boolean}) {
     ]
 
     useEffect(() => {
-        if (props.showFull) {
-            setShowFull(true)
+        if (!props.showFull) {
+            setShowFull(false)
         }
     }, [props.showFull])
 

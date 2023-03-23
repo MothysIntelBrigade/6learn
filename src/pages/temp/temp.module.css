@@ -1,0 +1,19 @@
+/*.graph {*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*}*/
+
+/*.path {*/
+/*    stroke-dasharray: 4300;*/
+/*    stroke-dashoffset: 0;*/
+/*    animation: dash 3s linear;*/
+/*}*/
+
+/*@keyframes dash {*/
+/*    from {*/
+/*        stroke-dashoffset: 4300;*/
+/*    }*/
+/*    to {*/
+/*        stroke-dashoffset: 0;*/
+/*    }*/
+/*}*/

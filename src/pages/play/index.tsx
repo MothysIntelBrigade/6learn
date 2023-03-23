@@ -2,12 +2,13 @@ import {useEffect, useState} from "react";
 import {PlayCircleFill} from "react-bootstrap-icons";
 import {StockView} from "@/components/stock_view";
 import {MarketPlayback} from "@/components/market_playback";
-import { query_six } from "@/utils/six"
-import { load_level } from "@/utils/levels"
+import {query_six} from "@/utils/six"
+import {load_level} from "@/utils/levels"
 import EndScreen from "@/components/end_screen";
+import Temp from "@/pages/temp";
 
 interface LevelMetadata {
-    id: number|string,
+    id: number | string,
     title: string,
     description: string
 }
@@ -27,26 +28,14 @@ export interface Level {
 
 function Game() {
 
-    const [loading, setLoading] = useState(true);
-    const [loaded, setLoaded] = useState(0);
-    const [data, setData] = useState({});
     const [playback, setPlayback] = useState(false);
-    const [level, setLevel] = useState<Level|undefined>(load_level(1) as Level);
+    const [level, setLevel] = useState<Level | undefined>(load_level(1) as Level);
 
-
-    if(!level)
+    if (!level)
         return (<div>Loading...</div>);
 
-   const scroll_lock = false
+    const scroll_lock = false
 
-    const data2 = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [
-            {
-                data: [12, 19, 3, 5, 2, 3],
-            }
-        ]
-    }
 
     return (
         <div className="flex justify-center items-center h-screen w-full">
@@ -58,14 +47,14 @@ function Game() {
                 <div
                     className="w-[3000px] h-[90vh] p-2 rounded-md mt-5"
                 >
+                    <h1
+                        className="text-2xl mt-10 font-bold"
+                    >{level.metadata.title}</h1>
                     {/* This is the screen first presented to the user on /play */}
                     {
                         playback ? (
                             <div>
-                                <h1
-                                    className="text-2xl mt-10 font-bold"
-                                >{level.metadata.title}</h1>
-                                <MarketPlayback level={level}/>
+                                <Temp/>
                             </div>
                         ) : (
                             <div
@@ -73,14 +62,10 @@ function Game() {
                             >
 
                                 <div
-                                    className="w-full p-5"
+                                    className="w-full py-5"
                                 >
 
                                     <div>
-                                        <h1
-                                            className="text-2xl mt-10 font-bold"
-                                        >{level.metadata.title}</h1>
-
                                         <p
                                             className="text-sm text-gray-500 text-justify"
                                         >{level.metadata.description}</p>
