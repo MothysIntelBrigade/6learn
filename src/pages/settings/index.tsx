@@ -1,11 +1,9 @@
 function Settings() {
 
-    let name = "tobi"
-
     return (
         <div>
 
-        <h1>Hello World! {name == "Ben"} </h1>
+        <h1>Nothing to see here! </h1>
         </div>
 
     )
