@@ -1,8 +1,5 @@
 import {useEffect, useState} from "react";
-import {query_six} from "@/utils/six"
 import {PlayCircleFill} from "react-bootstrap-icons";
-import StockCard from "@/components/stock_card";
-import {Timeline} from "@/components/timeline";
 import {StockView} from "@/components/stock_view";
 import {MarketPlayback} from "@/components/market_playback";
 import { query_six } from "@/utils/six"
@@ -24,32 +21,32 @@ function Game() {
     const [playback, setPlayback] = useState(false);
     const [level, setLevel] = useState({});
 
-    useEffect(() => {
-        setLevel(load_level(localStorage.getItem("level")))
-    }, [setLevel, level])
-
-    useEffect(() => {
-        if(level.game) {
-
-            level.game.tracked_symbols.forEach(v => {
-                let uri = `https://web.api.six-group.com/api/findata/v1/listings/marketData/eodTimeseries?scheme=TICKER_BC&ids=${v}&from=${level.game.start}&to=${level.game.end}`
-                query_six(uri).then(data => {
-                    setLoaded(loaded + 1)
-                    setData(data)
-                })
-            })
-
-        }
-    }, [level, setData, setLoaded])
-
-    useEffect(() => {
-        if(level.game) {
-            console.log(loaded)
-            if (loaded === level.game.tracked_symbols.length) {
-                setLoading(false)
-            }
-        }
-    }, [setLoading, loaded, level])
+    // useEffect(() => {
+    //     setLevel(load_level(localStorage.getItem("level")))
+    // }, [setLevel, level])
+    //
+    // useEffect(() => {
+    //     if(level.game) {
+    //
+    //         level.game.tracked_symbols.forEach(v => {
+    //             let uri = `https://web.api.six-group.com/api/findata/v1/listings/marketData/eodTimeseries?scheme=TICKER_BC&ids=${v}&from=${level.game.start}&to=${level.game.end}`
+    //             query_six(uri).then(data => {
+    //                 setLoaded(loaded + 1)
+    //                 setData(data)
+    //             })
+    //         })
+    //
+    //     }
+    // }, [level, setData, setLoaded])
+    //
+    // useEffect(() => {
+    //     if(level.game) {
+    //         console.log(loaded)
+    //         if (loaded === level.game.tracked_symbols.length) {
+    //             setLoading(false)
+    //         }
+    //     }
+    // }, [setLoading, loaded, level])
 
 
     const game_title = "Round 1"
