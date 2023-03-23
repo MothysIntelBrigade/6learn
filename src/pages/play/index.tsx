@@ -70,10 +70,19 @@ function Game() {
                             <div
                                 className="fixed bottom-0 left-0 w-full"
                             >
-                                <StockCard ticker={"APPL"}/>
-                                <StockCard ticker={"AMZN"}/>
-                                <StockCard ticker={"TSLA"}/>
+                                <div
+                                    className="mx-2"
+                                >
+                                <div className="text-sm mb-1">Budget: 20$</div>
+                                <div
+                                    className="space-y-2 mb-2"
+                                >
+                                    <StockCard ticker={"APPL"}/>
+                                    <StockCard ticker={"AMZN"}/>
+                                    <StockCard ticker={"TSLA"}/>
+                                </div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
