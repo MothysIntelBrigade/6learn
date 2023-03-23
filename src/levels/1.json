@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "id": 1,
+    "title": "Happy New Year",
+    "description": "This game will help you to get started with 6learn"
+  },
+  "game": {
+    "start": "2023-01-01",
+    "end": "2023-01-30",
+    "capital": 100000,
+    "tracked_symbols": [
+      "AAPL_67",
+      "GOOGL_67",
+      "MSFT_67"
+    ],
+    "stops": [
+
+      {
+        "can_edit_stocks": true,
+        "date": "2023-01-01",
+        "news": [],
+        "dialogs": [
+          {
+            "text": "Hello! Buy some stocks lol."
+          }
+        ]
+      },
+
+
+      {
+        "can_edit_stocks": false,
+        "date": "2023-01-10",
+        "news": [
+          {
+            "title": "COVID 19: Chinese factories closing down",
+            "text": "Apple no longer to receive components for their iPhones"
+          }
+        ],
+        "dialogs": [
+          {
+            "text": "Please decide what is the best action to do"
+          }
+        ]
+      },
+
+      {
+        "can_edit_stocks": false,
+        "date": "2023-01-30",
+        "news": [],
+        "dialogs": [
+          {
+            "text": "Oke you done, look at your results. So bad! :)"
+          }
+        ]
+      }
+
+    ]
+  }
+}
