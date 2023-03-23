@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {query_six} from "@/utils/six"
 import {PlayCircleFill} from "react-bootstrap-icons";
 import StockCard from "@/components/stock_card";
+import {Timeline} from "@/components/timeline";
 
 
 function Game() {
@@ -40,11 +41,13 @@ function Game() {
         <div className="flex justify-center items-center h-screen w-full">
 
             <div
-                className={`${scroll_lock ? "overflow-hidden" : " overflow-x-scroll"} border-b-1 border-gray-200 w-full p-2`}
+                className={`${scroll_lock ? "overflow-hidden" : " overflow-x-scroll"} w-full p-2`}
             >
+
                 <div
-                    className="w-[10000px] border border-gray-200 h-[90vh] p-2 rounded-md"
+                    className="w-[3000px] h-[90vh] p-2 rounded-md"
                 >
+                    {/* This is the screen first presented to the user on /play */}
                     <div
                         className="w-[90vw]"
                     >
@@ -53,19 +56,27 @@ function Game() {
                             className="w-full p-5"
                         >
 
-                            <h1
-                                className="text-2xl font-bold"
-                            >{game_title}</h1>
+                            <div>
+                                <h1
+                                    className="text-2xl font-bold"
+                                >{game_title}</h1>
 
-                            <p
-                                className="text-sm text-gray-500 text-justify"
-                            >{game_description}</p>
+                                <p
+                                    className="text-sm text-gray-500 text-justify"
+                                >{game_description}</p>
+                            </div>
 
                             <div
-                                className="flex justify-center items-center my-5"
+                                className="flex justify-center items-center my-24"
                             >
-                                <PlayCircleFill size={40}/>
+                                <button
+                                    className="disabled:text-gray-500 disabled:cursor-not-allowed"
+                                    disabled
+                                >
+                                    <PlayCircleFill size={40}/>
+                                </button>
                             </div>
+
 
                             <div
                                 className="fixed bottom-0 left-0 w-full"
@@ -73,30 +84,26 @@ function Game() {
                                 <div
                                     className="mx-2"
                                 >
-                                <div className="text-sm mb-1">Budget: 20$</div>
-                                <div
-                                    className="space-y-2 mb-2"
-                                >
-                                    <StockCard ticker={"APPL"}/>
-                                    <StockCard ticker={"AMZN"}/>
-                                    <StockCard ticker={"TSLA"}/>
-                                </div>
+                                    <div className="text-sm mb-1">Budget: 20$</div>
+                                    <div
+                                        className="space-y-2 mb-2"
+                                    >
+                                        <StockCard ticker={"APPL"}/>
+                                        <StockCard ticker={"AMZN"}/>
+                                        {/*<StockCard ticker={"TSLA"}/>*/}
+
+                                    </div>
 
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    {/*  */}
+
+                    <Timeline/>
                 </div>
-
             </div>
-
-            {/*<div>*/}
-            {/*    Status Loading: { loading.toString() } <br/>*/}
-            {/*    Data: { JSON.stringify(data) }*/}
-            {/*</div>*/}
-
-
         </div>
     )
 }
