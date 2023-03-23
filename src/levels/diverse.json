@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "id": 1,
+    "title": "Diversification matters",
+    "description": "Diversification means \"not putting all your eggs into one basket\": if you invest in a single stock or one sector only, you risk great losses if that sector doesn't develop well"
+  },
+  "game": {
+    "start": "2015-03-02",
+    "end": "2016-05-16",
+    "capital": 100000,
+    "tracked_symbols": [
+      "AAPL_67",
+      "JNJ_67",
+      "MSFT_67",
+      "DIS_67"
+    ],
+    "stops": [
+      {
+        "can_edit_stocks": true,
+        "date": "2015-03-02",
+        "news": [],
+        "dialogs": [
+          "Buy the stocks you think will develop best over the next 14 months"
+        ]
+      },
+      {
+        "can_edit_stocks": false,
+        "date": "2015-10-19",
+        "news": [
+          {
+            "subject": "Microsoft",
+            "title": "Microsoft cloud business exceeds expectations"
+          }
+        ],
+        "dialogs": []
+      },
+      {
+        "can_edit_stocks": false,
+        "date": "2016-05-16",
+        "news": [],
+        "dialogs": [
+          "Surprisingly, Apple performed badly over this time frame. Some lucky investors gained a lot from Microsoft",
+          "A balanced investor might have achieved earnings of XX%, performing much better than those who only bough Apple stock"
+        ]
+      }
+    ]
+  }
+}
