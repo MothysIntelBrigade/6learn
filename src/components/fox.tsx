@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from 'react';
 import { Popover } from '@headlessui/react'
 
+// Displays the fox
 export default function Footer() {
     return (
         <div>
@@ -12,13 +13,13 @@ export default function Footer() {
 
 function FoxText() {
     return (
-        <Popover className="absolute -top-14 bg-blue-100 rounded-md border border-black">
-            There are <Popover.Button><u>stocks</u></Popover.Button>.
-
-            <Popover.Panel className="absolute z-10 bg-blue-100 rounded-md border border-black">
-                <div className="grid grid-cols-2">
-                    Nice
-                </div>
+        <Popover
+            className="fixed m-5 p-1.5 right-0 bottom-[120px] bg-white width-2/3 rounded-md border border-gray-500 shadow-lg">
+            A stock is a type of <Popover.Button><p className="underline decoration-dashed">investment</p>
+        </Popover.Button> that represents an ownership share in a company.
+            <Popover.Panel className="absolute z-10 m-2 p-1  rounded-md bg-white border border-gray-500 shadow-lg">
+                Investment or investing means that an asset is bought, or that money is put into a bank to get a future
+                interest from it.
             </Popover.Panel>
         </Popover>
     )
@@ -32,12 +33,12 @@ function Fox() {
     }
     // Jump up and down
     // TODO: Animate more nicely
-    let style = (up ?  ' bottom-0 ':' -bottom-14 ' );
+    let style = (up ? ' bottom-0 ' : ' -bottom-[74px] ');
     return (
-        <div className='p-0' >
-            <div className={'fixed' + style + 'right-[10%]'}>
-                {up && <FoxText />}
-                <Image src="/fox.png" alt="fox" width="120" height="64"  onClick={handleClick}/>
+        <div className='p-0'>
+            <div className={'fixed' + style + 'right-[3%]'}>
+                {up && <FoxText/>}
+                <Image src="/fox.png" alt="fox" width="120" height="64" onClick={handleClick}/>
             </div>
         </div>
     )
