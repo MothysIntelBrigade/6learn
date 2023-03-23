@@ -1,4 +1,4 @@
-import level1 from '../levels/1.json'
+import level1 from '../levels/diverse.json'
 
 export function load_level(i) {
 
