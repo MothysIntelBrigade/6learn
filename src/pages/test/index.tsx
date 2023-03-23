@@ -7,12 +7,20 @@ export default function Test() {
             className="flex flex-col h-[80vh] w-screen pt-20 items-center justify-center"
         >
             <h1
-                className="text-5xl text-red-500"
+                className="text-5xl text-red-500 mb-3"
             >6Learn</h1>
 
             <div
                 className="flex flex-col items-center"
             >
+                <p
+                    className="text-sm text-gray-500 w-1/2 text-center"
+                >
+                    Surprisingly, Apple performed badly over this time frame.
+                    Some lucky investors gained a lot from Microsoft.
+                    A balanced investor might have achieved earnings of XX%,
+                    performing much better than those who only bough Apple stock
+                </p>
                 <h3
                     className="text-2xl my-3"
                 >Performance</h3>
