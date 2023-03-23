@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import { query_six } from "@/utils/six"
+import { load_level } from "@/utils/levels"
 
 
 function Test(props: {name: string}) {
@@ -12,33 +13,56 @@ function Test(props: {name: string}) {
 function Game() {
 
     const [loading, setLoading] = useState(true);
+    const [loaded, setLoaded] = useState(0);
     const [data, setData] = useState({});
-
-    const ticker_bc = 'AAPL_67';
-    const from = '2023-01-01';
-    const to = '2023-01-30';
-
+    const [level, setLevel] = useState({});
 
     useEffect(() => {
-        let uri = `https://web.api.six-group.com/api/findata/v1/listings/marketData/eodTimeseries?scheme=TICKER_BC&ids=${ticker_bc}&from=${from}&to=${to}`
-        query_six(uri).then(data => {
-            setLoading(false);
-            setData(data)
-        })
-    }, [setLoading, setData])
+        setLevel(load_level(localStorage.getItem("level")))
+    }, [setLevel, level])
+
+    useEffect(() => {
+        if(level.game) {
+
+            level.game.tracked_symbols.forEach(v => {
+                let uri = `https://web.api.six-group.com/api/findata/v1/listings/marketData/eodTimeseries?scheme=TICKER_BC&ids=${v}&from=${level.game.start}&to=${level.game.end}`
+                query_six(uri).then(data => {
+                    setLoaded(loaded + 1)
+                    setData(data)
+                })
+            })
+
+        }
+    }, [level, setData, setLoaded])
+
+    useEffect(() => {
+        if(level.game) {
+            console.log(loaded)
+            if (loaded === level.game.tracked_symbols.length) {
+                setLoading(false)
+            }
+        }
+    }, [setLoading, loaded, level])
 
 
     return (
         <div className="flex justify-center items-center h-screen">
 
             <div className="border-b-1 border-gray-200 w-[10000px] bg-red-200">
-                test
+                Loading: { loading.toString() }
             </div>
 
-            <div>
-                Status Loading: { loading.toString() } <br/>
-                Data: { JSON.stringify(data) }
-            </div>
+            <h1 className={"text-h1"}>
+                {
+                    level.metadata && level.metadata.title
+                }
+            </h1>
+            <p>
+                {
+                    level.metadata && level.metadata.description
+                }
+            </p>
+
 
 
         </div>
