@@ -13,14 +13,11 @@ export default function Footer() {
 function FoxText() {
     return (
         <Popover className="absolute -top-14 bg-blue-100 rounded-md border border-black">
-            <Popover.Button>I am the fox</Popover.Button>
+            There are <Popover.Button><u>stocks</u></Popover.Button>.
 
-            <Popover.Panel className="absolute z-10">
+            <Popover.Panel className="absolute z-10 bg-blue-100 rounded-md border border-black">
                 <div className="grid grid-cols-2">
-                    <a href="/analytics">Analytics</a>
-                    <a href="/engagement">Engagement</a>
-                    <a href="/security">Security</a>
-                    <a href="/integrations">Integrations</a>
+                    Nice
                 </div>
             </Popover.Panel>
         </Popover>
@@ -43,6 +40,5 @@ function Fox() {
                 <Image src="/fox.png" alt="fox" width="120" height="64"  onClick={handleClick}/>
             </div>
         </div>
-
     )
 }
