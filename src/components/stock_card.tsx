@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {ArrowUpRight} from "react-bootstrap-icons";
 
-export default function StockCard(props: { ticker: string }) {
+export default function StockCard(props: { ticker: string , stock_price : number, budget : number, setBudget : any}) {
     const [count, setCount] = useState(0)
 
 
@@ -20,7 +20,7 @@ export default function StockCard(props: { ticker: string }) {
                     <div
                         className="text-xs text-gray-400"
                     >
-                        24.45
+                        {props.stock_price/100}
                         <ArrowUpRight className="inline-block ml-2"/>
 
                     </div>
@@ -29,7 +29,13 @@ export default function StockCard(props: { ticker: string }) {
                     className="flex justify-between items-center space-x-5"
                 >
                     <button
-                        onClick={() => setCount(count - 1)}
+                        className={`- ${(count == 0) ? "text-gray-400": ""}`}
+                        disabled={count == 0}
+                        onClick={() => {
+                            if (count > 0){
+                            setCount(count - 1)}
+                            props.setBudget(props.budget + props.stock_price)
+                        }}
                     >
                         -
                     </button>
@@ -37,7 +43,14 @@ export default function StockCard(props: { ticker: string }) {
                         {count}
                     </div>
                     <button
-                        onClick={() => setCount(count + 1)}
+                        disabled={props.budget - props.stock_price <= 0}
+                        className="disabled:text-gray-400 disabled:cursor-not-allowed"
+                        onClick={() => {
+                            setCount(count + 1)
+                            props.setBudget(props.budget - props.stock_price)}
+                        }
+
+
                     >
                         +
                     </button>
