@@ -6,7 +6,7 @@ function Settings() {
     const [path, setPath] = useState("")
 
 
-    svgPathMaker("GOOG_67", "2023-01-10", "2023-01-30", 500, 500).then(res => {
+    svgPathMaker("GOOG_67", "2022-01-10", "2023-01-30", 500, 500, 4).then(res => {
         setPath(res)
     })
     console.log(path)
