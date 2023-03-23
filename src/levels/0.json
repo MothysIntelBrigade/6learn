@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "id": 0,
+    "title": "Introduction to 6learn",
+    "ffox_explanation": "Hi, I'm the Finance Fox and I will help you make more sense of the stock market"
+  },
+  "game": {
+    "start": "2020-01-01",
+    "end": "2020-06-01",
+    "capital": 10000,
+    "tracked_symbols": [
+      "AAPL_67",
+      "GOOGL_67",
+      "MSFT_67"
+    ],
+    "stops": [
+
+      {
+        "can_edit_stocks": true,
+        "date": "2023-01-01",
+        "news": [],
+        "dialogs": [
+          {
+            "ffox_explanation": "In this lesson you will buy your first stocks"
+          }
+        ]
+      },
+
+
+      {
+        "can_edit_stocks": false,
+        "date": "2023-01-10",
+        "news": [
+          {
+            "title": "COVID 19: Chinese factories closing down",
+            "text": "Apple no longer to receive components for their iPhones"
+          }
+        ],
+        "dialogs": [
+          {
+            "text": "Please decide what is the best action to do"
+          }
+        ]
+      },
+
+      {
+        "can_edit_stocks": false,
+        "date": "2023-01-30",
+        "news": [],
+        "dialogs": [
+          {
+            "text": "Oke you done, look at your results. So bad! :)"
+          }
+        ]
+      }
+
+    ]
+  }
+}
