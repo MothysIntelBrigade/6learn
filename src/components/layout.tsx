@@ -1,6 +1,7 @@
 import Navbar from './navbar'
 import {ReactNode} from "react";
 // import Footer from './footer'
+import Footer from "@/components/fox"
 
 interface Props {
     children?: ReactNode
@@ -14,6 +15,7 @@ export default function Layout({ children, ...props }: Props) {
             <div
             >{children}</div>
             {/*<Footer />*/}
+            <Footer />
         </>
     )
 }
