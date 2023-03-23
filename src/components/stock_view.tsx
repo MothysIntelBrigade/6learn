@@ -6,15 +6,32 @@ export function StockView(props: {showFull: boolean}) {
     const [showFull, setShowFull] = useState(true)
 
 
+    const stocks: Stock[] = [
+        {
+            ticker: "APPL",
+            name: "Apple Inc.",
+            price: 2445,
+            description: "Apple is an american multinational technology company that specializes in consumer electronics, computer software, and online services.",
+        },
+        {
+            ticker: "AMZN",
+            name: "Amazon",
+            price: 8756,
+            description: "Test Description",
+        },{
+            ticker: "GOGL",
+            name: "Google",
+            price: 1234,
+            description: "Test Description",
+        }
+    ]
+
     useEffect(() => {
         if (props.showFull) {
             setShowFull(true)
         }
     }, [props.showFull])
 
-    // function getClassName(index: number) {
-    //     return showFull ? `w-full transform transition-all ease-in-out translate-y-${index*8}` : ""
-    // }
 
     return (
         <div
@@ -59,7 +76,7 @@ export function StockView(props: {showFull: boolean}) {
                         } : {}
                     }
                 >
-                    <StockCard ticker={"APPL"} stock_price={2445} budget={budget} setBudget={setBudget} info_text="Hi"/>
+                    <StockCard budget={budget} setBudget={setBudget} stock={stocks[0]}/>
                 </div>
                 <div
                     className="w-full transform transition-all ease-in-out duration-200"
@@ -70,12 +87,12 @@ export function StockView(props: {showFull: boolean}) {
                         } : {}
                     }
                 >
-                    <StockCard ticker={"AMZN"} stock_price={3445} budget={budget} setBudget={setBudget} info_text="Ho"/>
+                    <StockCard stock={stocks[1]} budget={budget} setBudget={setBudget}/>
                 </div>
                 <div
                     className="w-full transform transition-all ease-in-out"
                 >
-                    <StockCard ticker={"TSLA"} stock_price={4445} budget={budget} setBudget={setBudget} info_text="He"/>
+                    <StockCard stock={stocks[2]} budget={budget} setBudget={setBudget}/>
                 </div>
             </div>
 

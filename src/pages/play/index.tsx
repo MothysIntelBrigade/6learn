@@ -99,7 +99,7 @@ function Game() {
                                     </div>
 
                                     <div
-                                        className="flex justify-center items-center my-24"
+                                        className="flex justify-center items-center my-16"
                                     >
                                         <button
                                             className="disabled:text-gray-500 disabled:cursor-not-allowed"

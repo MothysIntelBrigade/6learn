@@ -1,8 +1,8 @@
 import {useState} from "react";
-import {ArrowDown, ArrowDownSquareFill, ArrowUpRight, InfoLg} from "react-bootstrap-icons";
+import {ArrowDown, ArrowDownSquareFill, ArrowUpRight, InfoCircle, InfoLg} from "react-bootstrap-icons";
 import {Disclosure} from "@headlessui/react";
 
-export default function StockCard(props: { ticker: string , stock_price : number, budget : number, setBudget : any, info_text : string}) {
+export default function StockCard(props: { stock: Stock, budget: number, setBudget: any }) {
     const [count, setCount] = useState(0)
 
 
@@ -11,25 +11,39 @@ export default function StockCard(props: { ticker: string , stock_price : number
             className="w-full"
         >
             <div
-                className="p-2 border border-gray-200 bg-white dark:bg-black flex justify-between items-center h-16 rounded-md shadow"
+                className="p-2 border border-gray-200 bg-white dark:bg-black flex justify-between items-center min-h-16 rounded-md shadow"
             >
 
                 <div>
-                    <div>
-                        ${props.ticker}
+                    <div
+                        className="flex justify-between items-baseline"
+                    >
                         <Disclosure>
-                        <Disclosure.Button>
-                            <InfoLg className="ml-2 text-sm"/>
-                        </Disclosure.Button>
-                        <Disclosure.Panel>
-                            {props.info_text}
-                        </Disclosure.Panel>
+                            <div>
+                                <div>
+                                    <Disclosure.Button>
+                                        <div
+                                            className="flex justify-between items-center"
+                                        >
+                                            {props.stock.name} <InfoCircle className="ml-2 inline-block"/>
+                                        </div>
+                                    </Disclosure.Button>
+                                </div>
+                                <div
+                                    className="my-2 text-xs text-gray-500"
+                                >
+                                    <Disclosure.Panel>
+                                        {props.stock.description}
+                                    </Disclosure.Panel>
+                                </div>
+                            </div>
                         </Disclosure>
+
                     </div>
                     <div
                         className="text-xs text-gray-400"
                     >
-                        {props.stock_price/100}
+                        {props.stock.ticker} {props.stock.price / 100}
                         <ArrowUpRight className="inline-block ml-2"/>
 
                     </div>
@@ -43,7 +57,7 @@ export default function StockCard(props: { ticker: string , stock_price : number
                         className="disabled:text-gray-400 disabled:cursor-not-allowed"
                         onClick={() => {
                             setCount(count - 1)
-                            props.setBudget(props.budget + props.stock_price)
+                            props.setBudget(props.budget + props.stock.price)
                         }}
                     >
                         -
@@ -52,14 +66,13 @@ export default function StockCard(props: { ticker: string , stock_price : number
                         {count}
                     </div>
                     <button
-                        disabled={props.budget - props.stock_price <= 0}
+                        disabled={props.budget - props.stock.price <= 0}
                         className="disabled:text-gray-400 disabled:cursor-not-allowed"
                         onClick={() => {
                             setCount(count + 1)
-                            props.setBudget(props.budget - props.stock_price)}
+                            props.setBudget(props.budget - props.stock.price)
                         }
-
-
+                        }
                     >
                         +
                     </button>
