@@ -6,13 +6,24 @@ import { query_six } from "@/utils/six"
 import { load_level } from "@/utils/levels"
 import EndScreen from "@/components/end_screen";
 
-
-function Test(props: {name: string}) {
-    return (
-        <div>{props.name}</div>
-    )
+interface LevelMetadata {
+    id: number|string,
+    title: string,
+    description: string
 }
 
+interface LevelGame {
+    start: string,
+    end: string,
+    capital: number,
+    tracked_symbols: string[],
+    stops: object[]
+}
+
+export interface Level {
+    game: LevelGame,
+    metadata: LevelMetadata,
+}
 
 function Game() {
 
@@ -20,39 +31,13 @@ function Game() {
     const [loaded, setLoaded] = useState(0);
     const [data, setData] = useState({});
     const [playback, setPlayback] = useState(false);
-    const [level, setLevel] = useState({});
-
-    // useEffect(() => {
-    //     setLevel(load_level(localStorage.getItem("level")))
-    // }, [setLevel, level])
-    //
-    // useEffect(() => {
-    //     if(level.game) {
-    //
-    //         level.game.tracked_symbols.forEach(v => {
-    //             let uri = `https://web.api.six-group.com/api/findata/v1/listings/marketData/eodTimeseries?scheme=TICKER_BC&ids=${v}&from=${level.game.start}&to=${level.game.end}`
-    //             query_six(uri).then(data => {
-    //                 setLoaded(loaded + 1)
-    //                 setData(data)
-    //             })
-    //         })
-    //
-    //     }
-    // }, [level, setData, setLoaded])
-    //
-    // useEffect(() => {
-    //     if(level.game) {
-    //         console.log(loaded)
-    //         if (loaded === level.game.tracked_symbols.length) {
-    //             setLoading(false)
-    //         }
-    //     }
-    // }, [setLoading, loaded, level])
+    const [level, setLevel] = useState<Level|undefined>(load_level(1) as Level);
 
 
-    const game_title = "Round 1"
-    const game_description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    const scroll_lock = false
+    if(!level)
+        return (<div>Loading...</div>);
+
+   const scroll_lock = false
 
     const data2 = {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -77,7 +62,10 @@ function Game() {
                     {
                         playback ? (
                             <div>
-                                <MarketPlayback/>
+                                <h1
+                                    className="text-2xl mt-10 font-bold"
+                                >{level.metadata.title}</h1>
+                                <MarketPlayback level={level}/>
                             </div>
                         ) : (
                             <div
@@ -90,12 +78,12 @@ function Game() {
 
                                     <div>
                                         <h1
-                                            className="text-2xl font-bold"
-                                        >{game_title}</h1>
+                                            className="text-2xl mt-10 font-bold"
+                                        >{level.metadata.title}</h1>
 
                                         <p
                                             className="text-sm text-gray-500 text-justify"
-                                        >{game_description}</p>
+                                        >{level.metadata.description}</p>
                                     </div>
 
                                     <div
