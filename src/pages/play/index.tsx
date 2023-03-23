@@ -4,6 +4,7 @@ import {StockView} from "@/components/stock_view";
 import {MarketPlayback} from "@/components/market_playback";
 import { query_six } from "@/utils/six"
 import { load_level } from "@/utils/levels"
+import EndScreen from "@/components/end_screen";
 
 
 function Test(props: {name: string}) {
