@@ -4,12 +4,14 @@ import {PlayCircleFill} from "react-bootstrap-icons";
 import StockCard from "@/components/stock_card";
 import {Timeline} from "@/components/timeline";
 import {StockView} from "@/components/stock_view";
+import {MarketPlayback} from "@/components/market_playback";
 
 
 function Game() {
 
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
+    const [playback, setPlayback] = useState(false);
 
     const ticker_bc = 'AAPL_67';
     const from = '2023-01-01';
@@ -49,46 +51,54 @@ function Game() {
                     className="w-[3000px] h-[90vh] p-2 rounded-md"
                 >
                     {/* This is the screen first presented to the user on /play */}
-                    <div
-                        className="w-[90vw]"
-                    >
-
-                        <div
-                            className="w-full p-5"
-                        >
-
+                    {
+                        playback ? (
                             <div>
-                                <h1
-                                    className="text-2xl font-bold"
-                                >{game_title}</h1>
-
-                                <p
-                                    className="text-sm text-gray-500 text-justify"
-                                >{game_description}</p>
+                                <MarketPlayback/>
                             </div>
-
+                        ) : (
                             <div
-                                className="flex justify-center items-center my-24"
+                                className="w-[90vw]"
                             >
-                                <button
-                                    className="disabled:text-gray-500 disabled:cursor-not-allowed"
-                                    disabled
+
+                                <div
+                                    className="w-full p-5"
                                 >
-                                    <PlayCircleFill size={40}/>
-                                </button>
-                            </div>
 
-                            <div
-                                className="fixed bottom-0 left-0 w-full"
-                            >
-                                <StockView/>
+                                    <div>
+                                        <h1
+                                            className="text-2xl font-bold"
+                                        >{game_title}</h1>
+
+                                        <p
+                                            className="text-sm text-gray-500 text-justify"
+                                        >{game_description}</p>
+                                    </div>
+
+                                    <div
+                                        className="flex justify-center items-center my-24"
+                                    >
+                                        <button
+                                            className="disabled:text-gray-500 disabled:cursor-not-allowed"
+
+                                            onClick={
+                                                () => {
+                                                    setPlayback(true)
+                                                }
+                                            }
+                                        >
+                                            <PlayCircleFill size={40}/>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        )
+                    }
+                    <div
+                        className="fixed bottom-0 left-0 w-full"
+                    >
+                        <StockView/>
                     </div>
-
-                    {/*  */}
-
-                    <Timeline/>
                 </div>
             </div>
         </div>
