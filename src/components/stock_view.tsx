@@ -12,9 +12,9 @@ export function StockView(){
             <div
                 className="space-y-2 mb-2"
             >
-                <StockCard ticker={"APPL"} stock_price={2445} budget={budget} setBudget={setBudget}/>
-                <StockCard ticker={"AMZN"} stock_price={3445} budget={budget} setBudget={setBudget}/>
-                <StockCard ticker={"TSLA"} stock_price={4445} budget={budget} setBudget={setBudget}/>
+                <StockCard ticker={"APPL"} stock_price={2445} budget={budget} setBudget={setBudget} info_text="Hi"/>
+                <StockCard ticker={"AMZN"} stock_price={3445} budget={budget} setBudget={setBudget} info_text="Ho"/>
+                <StockCard ticker={"TSLA"} stock_price={4445} budget={budget} setBudget={setBudget} info_text="He"/>
             </div>
 
         </div>
