@@ -71,7 +71,7 @@ function Game() {
             >
 
                 <div
-                    className="w-[3000px] h-[90vh] p-2 rounded-md"
+                    className="w-[3000px] h-[90vh] p-2 rounded-md mt-5"
                 >
                     {/* This is the screen first presented to the user on /play */}
                     {
@@ -120,7 +120,7 @@ function Game() {
                     <div
                         className="fixed bottom-0 left-0 w-full"
                     >
-                        <StockView/>
+                        <StockView showFull={!playback}/>
                     </div>
                 </div>
             </div>

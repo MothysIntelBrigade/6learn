@@ -5,7 +5,6 @@ export default function EndScreen() {
         <div
             // className="pt-16"
         >
-
             <div
                 className="flex flex-col justify-center items-center h-screen"
             >

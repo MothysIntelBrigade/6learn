@@ -11,7 +11,7 @@ export default function StockCard(props: { ticker: string , stock_price : number
             className="w-full"
         >
             <div
-                className="p-2 border border-gray-200 bg-white dark:bg-black flex justify-between items-center min-h-15 rounded-md shadow"
+                className="p-2 border border-gray-200 bg-white dark:bg-black flex justify-between items-center h-16 rounded-md shadow"
             >
 
                 <div>
