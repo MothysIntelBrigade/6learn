@@ -3,7 +3,7 @@ import {GearFill} from "react-bootstrap-icons";
 
 export default function Navbar() {
     return (
-        <div className="flex w-full fixed justify-between p-2 items-center">
+        <div className="flex w-full fixed justify-between p-2 items-center h-16 bg-white">
             <div>
                 <Image src="/logo.png" alt="logo" width="64" height="64" />
             </div>
