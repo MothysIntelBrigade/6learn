@@ -1,10 +1,14 @@
 # 6learn
 
-<img src="screenshots/1.png" style="width:49%">
-<img src="screenshots/2.png" style="width:49%">    
+<p align="middle">
+    <img src="screenshots/1.png" style="width:49%">
+    <img src="screenshots/2.png" style="width:49%">
+</p>
 
-<img src="screenshots/3.png" style="width:49%">
-<img src="screenshots/4.png" style="width:49%">
+<p align="middle">
+    <img src="screenshots/3.png" style="width:49%">
+    <img src="screenshots/4.png" style="width:49%">
+</p>
 
 This is our solution as web-based application for the [problem case of SIX at StartHack23](https://github.com/START-Hack/SIX_STARTHACK23_INCLUSIVE_FINANCE).
 It has been developed **mobile-first**
