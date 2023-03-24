@@ -2,7 +2,7 @@ import {useState} from "react";
 import {ArrowDown, ArrowDownSquareFill, ArrowUpRight, InfoCircle, InfoLg} from "react-bootstrap-icons";
 import {Disclosure} from "@headlessui/react";
 
-export default function StockCard(props: { stock: Stock, budget: number, setBudget: any }) {
+export default function StockCard(props: { stock: Stock, budget: number, setBudget: any, allow_buying: boolean }) {
     const [count, setCount] = useState(0)
 
 
@@ -53,7 +53,7 @@ export default function StockCard(props: { stock: Stock, budget: number, setBudg
                     className="flex justify-between items-center space-x-5 text-xl"
                 >
                     <button
-                        disabled={count == 0}
+                        disabled={count == 0 || !props.allow_buying}
                         className="disabled:text-gray-400 disabled:cursor-not-allowed"
                         onClick={() => {
                             setCount(count - 1)
@@ -66,7 +66,7 @@ export default function StockCard(props: { stock: Stock, budget: number, setBudg
                         {count}
                     </div>
                     <button
-                        disabled={props.budget - props.stock.price <= 0}
+                        disabled={(props.budget - props.stock.price <= 0) || !props.allow_buying}
                         className="disabled:text-gray-400 disabled:cursor-not-allowed"
                         onClick={() => {
                             setCount(count + 1)

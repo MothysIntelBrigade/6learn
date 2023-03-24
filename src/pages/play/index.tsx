@@ -94,7 +94,7 @@ function Game() {
                     <div
                         className="fixed bottom-0 left-0 w-full"
                     >
-                        <StockView showFull={!playback}/>
+                        <StockView showFull={!playback} running={playback}/>
                     </div>
                 </div>
             </div>
