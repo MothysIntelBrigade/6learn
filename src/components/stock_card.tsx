@@ -50,7 +50,7 @@ export default function StockCard(props: { stock: Stock, budget: number, setBudg
                 </div>
 
                 <div
-                    className="flex justify-between items-center space-x-5"
+                    className="flex justify-between items-center space-x-5 text-xl"
                 >
                     <button
                         disabled={count == 0}

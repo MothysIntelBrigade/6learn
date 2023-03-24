@@ -29,6 +29,7 @@ export interface Level {
 function Game() {
 
     const [playback, setPlayback] = useState(false);
+    const [touched, setTouched] = useState(false);
     const [level, setLevel] = useState<Level | undefined>(load_level(1) as Level);
 
     if (!level)
