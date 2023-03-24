@@ -1,7 +1,7 @@
 import StockCard from "@/components/stock_card";
 import {useEffect, useState} from "react";
 
-export function StockView(props: {showFull: boolean}) {
+export function StockView(props: { showFull: boolean, running: boolean }) {
     const [budget, setBudget] = useState(10000)
     const [showFull, setShowFull] = useState(true)
 
@@ -76,7 +76,7 @@ export function StockView(props: {showFull: boolean}) {
                         } : {}
                     }
                 >
-                    <StockCard budget={budget} setBudget={setBudget} stock={stocks[0]}/>
+                    <StockCard budget={budget} setBudget={setBudget} stock={stocks[0]} allow_buying={!props.running}/>
                 </div>
                 <div
                     className="w-full transform transition-all ease-in-out duration-200"
@@ -87,12 +87,12 @@ export function StockView(props: {showFull: boolean}) {
                         } : {}
                     }
                 >
-                    <StockCard stock={stocks[1]} budget={budget} setBudget={setBudget}/>
+                    <StockCard stock={stocks[1]} budget={budget} setBudget={setBudget} allow_buying={!props.running}/>
                 </div>
                 <div
                     className="w-full transform transition-all ease-in-out"
                 >
-                    <StockCard stock={stocks[2]} budget={budget} setBudget={setBudget}/>
+                    <StockCard stock={stocks[2]} budget={budget} setBudget={setBudget} allow_buying={!props.running}/>
                 </div>
             </div>
 
