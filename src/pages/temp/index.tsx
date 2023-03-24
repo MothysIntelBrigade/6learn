@@ -2,10 +2,12 @@ import {useEffect, useState} from "react";
 import styles from "./temp.module.css";
 import {svgPathMaker} from "@/utils/data_to_svg/data_to_svg";
 import EndScreen from "@/components/end_screen";
+import useBus from "use-bus";
 
 
 export default function Temp() {
     const [path, setPath] = useState("")
+    const [start, setStart] = useState(false)
 
     // svgPathMaker("JNJ_65", "2015-03-02", "2016-05-16", 1000, 300, 7).then(res => {
     //     setPath(res)
@@ -16,140 +18,152 @@ export default function Temp() {
     const dis_path ="M 0 245 L 0 245 L 3 252 L 6 238 L 10 244 L 13 243 L 16 243 L 19 234 L 23 236 L 26 233 L 29 233 L 32 233 L 36 231 L 39 223 L 45 214 L 49 212 L 55 239 L 58 260 L 62 255 L 65 255 L 68 252 L 71 261 L 75 251 L 78 239 L 81 225 L 84 226 L 88 222 L 91 214 L 94 229 L 97 236 L 101 245 L 107 260 L 110 279 L 114 270 L 117 279 L 120 272 L 123 271 L 127 266 L 130 262 L 133 264 L 136 266 L 140 263 L 143 247 L 146 250 L 149 258 L 153 261 L 156 263 L 159 266 L 162 263 L 166 265 L 169 260 L 172 264 L 175 270 L 179 268 L 182 268 L 185 273 L 188 276 L 192 279 L 195 281 L 198 279 L 201 282 L 205 278 L 208 277 L 211 265 L 214 264 L 218 263 L 221 250 L 224 246 L 231 238 L 234 239 L 237 236 L 240 237 L 244 232 L 247 234 L 250 232 L 253 230 L 256 226 L 260 227 L 266 221 L 269 231 L 273 236 L 276 240 L 279 241 L 282 243 L 286 249 L 292 250 L 295 241 L 299 234 L 302 252 L 305 258 L 308 253 L 312 267 L 315 265 L 318 262 L 321 258 L 325 266 L 328 264 L 331 264 L 334 248 L 338 253 L 341 246 L 344 241 L 347 235 L 354 234 L 357 233 L 360 230 L 364 248 L 367 243 L 370 247 L 373 249 L 377 256 L 380 263 L 383 257 L 386 259 L 390 261 L 393 263 L 396 253 L 399 252 L 403 261 L 406 249 L 409 245 L 416 244 L 419 233 L 422 225 L 425 219 L 429 227 L 432 229 L 438 236 L 442 233 L 445 218 L 448 227 L 451 212 L 455 222 L 458 219 L 461 220 L 464 219 L 468 223 L 471 233 L 474 245 L 477 244 L 481 228 L 484 231 L 487 231 L 490 236 L 494 223 L 497 223 L 500 224 L 503 239 L 506 228 L 510 216 L 516 165 L 519 174 L 523 173 L 526 179 L 529 165 L 532 155 L 536 157 L 542 145 L 545 154 L 549 153 L 552 165 L 555 168 L 562 168 L 565 175 L 571 187 L 575 177 L 578 182 L 581 180 L 584 146 L 588 128 L 591 137 L 594 141 L 597 144 L 604 146 L 607 149 L 610 163 L 614 155 L 617 160 L 620 214 L 623 221 L 627 276 L 630 246 L 633 275 L 636 244 L 640 257 L 643 252 L 646 252 L 649 214 L 653 212 L 656 227 L 659 219 L 662 230 L 666 217 L 669 214 L 672 220 L 675 181 L 679 185 L 682 178 L 685 178 L 688 180 L 692 202 L 698 186 L 701 189 L 708 152 L 711 153 L 714 137 L 718 121 L 721 74 L 724 63 L 727 58 L 731 78 L 734 82 L 737 55 L 744 11 L 747 30 L 750 20 L 753 38 L 760 42 L 763 49 L 769 52 L 773 78 L 779 66 L 782 75 L 786 71 L 789 74 L 792 58 L 795 57 L 799 75 L 802 53 L 805 60 L 808 51 L 812 43 L 815 72 L 818 66 L 821 72 L 825 80 L 828 84 L 831 68 L 834 118 L 838 138 L 841 124 L 844 135 L 847 119 L 851 119 L 854 127 L 857 167 L 860 158 L 864 130 L 867 143 L 870 156 L 873 173 L 877 160 L 883 181 L 886 204 L 893 240 L 896 252 L 903 241 L 906 274 L 909 270 L 912 270 L 916 272 L 919 260 L 922 239 L 925 198 L 929 218 L 932 231 L 935 230 L 938 254 L 945 277 L 948 263 L 951 243 L 955 293 L 958 281 L 961 273 L 964 279 L 968 296 L 971 300 L 974 280 L 977 261 L 981 244 L 984 226 L 987 240 L 990 255 L 994 257 L 997 277 "
     const jnj_path = "M 0 261 L 0 261 L 3 276 L 7 263 L 10 269 L 13 267 L 16 270 L 20 270 L 23 266 L 26 258 L 29 267 L 33 277 L 36 275 L 39 272 L 42 276 L 46 269 L 49 273 L 52 271 L 56 275 L 59 285 L 62 296 L 65 294 L 69 292 L 72 293 L 75 286 L 78 277 L 82 269 L 85 263 L 88 267 L 91 265 L 95 262 L 98 258 L 101 259 L 108 276 L 111 284 L 114 257 L 118 265 L 121 258 L 124 248 L 127 248 L 131 248 L 134 243 L 137 242 L 140 236 L 144 231 L 147 230 L 150 225 L 154 229 L 157 224 L 160 217 L 163 216 L 170 199 L 173 192 L 176 191 L 180 197 L 183 208 L 186 210 L 189 210 L 193 215 L 196 210 L 199 210 L 203 216 L 206 227 L 209 223 L 212 219 L 216 230 L 219 233 L 222 221 L 225 222 L 232 220 L 235 226 L 238 229 L 242 229 L 245 211 L 248 201 L 252 189 L 255 183 L 258 192 L 261 193 L 268 197 L 271 195 L 274 186 L 278 184 L 281 176 L 284 170 L 287 157 L 294 171 L 297 160 L 301 171 L 304 169 L 307 167 L 310 171 L 314 174 L 317 162 L 320 173 L 323 167 L 327 156 L 330 140 L 333 145 L 336 146 L 340 153 L 343 145 L 346 137 L 350 142 L 356 132 L 359 123 L 363 133 L 366 172 L 369 166 L 372 171 L 376 170 L 379 176 L 382 184 L 385 174 L 389 171 L 392 187 L 395 195 L 399 192 L 402 201 L 405 202 L 408 200 L 412 199 L 415 203 L 418 188 L 421 189 L 425 170 L 428 173 L 431 162 L 434 163 L 438 158 L 441 146 L 444 149 L 448 148 L 451 164 L 454 148 L 457 142 L 461 127 L 464 139 L 467 123 L 470 128 L 474 184 L 477 185 L 480 176 L 483 179 L 487 180 L 490 167 L 493 156 L 497 157 L 500 150 L 503 154 L 506 149 L 510 159 L 513 156 L 516 147 L 519 139 L 523 155 L 526 146 L 532 146 L 536 138 L 542 140 L 545 170 L 549 167 L 552 176 L 555 172 L 559 177 L 562 180 L 565 174 L 568 171 L 572 173 L 575 174 L 578 177 L 581 173 L 585 172 L 588 156 L 594 145 L 598 128 L 601 128 L 604 129 L 608 116 L 611 115 L 614 101 L 617 113 L 621 130 L 624 134 L 627 163 L 630 210 L 634 166 L 637 146 L 640 104 L 643 119 L 647 122 L 650 124 L 653 122 L 657 120 L 660 133 L 663 143 L 666 137 L 670 115 L 673 124 L 676 121 L 679 117 L 683 106 L 686 118 L 689 117 L 692 130 L 696 119 L 699 119 L 702 128 L 706 149 L 709 120 L 712 125 L 715 121 L 719 106 L 722 104 L 725 94 L 728 82 L 732 73 L 735 53 L 738 66 L 741 64 L 745 87 L 748 89 L 751 80 L 755 63 L 758 71 L 761 75 L 764 72 L 768 60 L 771 50 L 774 50 L 777 63 L 781 65 L 784 74 L 787 54 L 790 53 L 794 50 L 800 39 L 804 23 L 807 39 L 810 44 L 813 67 L 817 73 L 820 82 L 823 78 L 826 64 L 830 67 L 833 71 L 836 81 L 839 84 L 843 49 L 846 56 L 853 46 L 856 65 L 859 43 L 862 46 L 866 71 L 869 69 L 872 51 L 875 32 L 879 20 L 882 12 L 885 9 L 888 8 L 892 30 L 895 23 L 898 21 L 902 30 L 905 50 L 908 12 L 911 25 L 915 33 L 918 43 L 921 36 L 924 65 L 928 63 L 931 65 L 934 64 L 937 72 L 941 71 L 944 81 L 947 67 L 951 35 L 954 38 L 957 35 L 960 27 L 964 28 L 967 33 L 970 27 L 973 25 L 977 38 L 980 56 L 983 66 L 986 75 L 990 88 L 993 106 L 996 104 L 1000 110 "
 
-    useEffect(() => {
 
-    }, []);
+    useBus('start', () => {
+        setStart(true)
+    }, [setStart, start])
 
     return (
-        <div className="h-screen w-screen pt-5">
-            <div
-            className="flex space-x-3 text-sm mb-4"
-            >
-                <div
-                    className="flex items-center"
-                >
-                    Your stocks: <span className="inline-block rounded-full h-2 w-2 bg-[#3D8C40] ml-2"></span>
-                </div>
-                <div
-                    className="flex items-center"
-                >
-                    Apple: <span className="inline-block rounded-full h-2 w-2 bg-red-400 ml-2"></span>
-                </div>
-                <div
-                    className="flex items-center"
-                >
-                    Other: <span className="inline-block rounded-full h-2 w-2 bg-gray-400 ml-2"></span>
-                </div>
-            </div>
-            <div
-                className="flex"
-            >
-            <div
-                className="grid grid-cols-4 gap-0"
-            >
-                <div
-                    className="overflow-x-hidden border-r-2 border-gray-300 border-dashed col-span-3"
-                >
 
-                    <svg viewBox="0 0 1000 300"
-                         className={`w-[1000px] ${styles.graph}`}
-                    >
-                        <g>
+        <div className="h-screen w-full pt-5">
 
-                            <g transform="matrix(-1,0,0,1,2950,45)">
-                                <path d="M34,255L2950,255" className="fill-none stroke-black stroke-width-1.5px "/>
-                            </g>
-                            <g transform="matrix(-1,0,0,1,2950,-105)">
-                                <path d="M34,255L2950,255"
+            { start && (
+                <div>
 
-                                      className="fill-none stroke-gray-500 stroke-width-1px "
-                                />
-                            </g>
-                            <g transform="matrix(1,0,0,1,2885,13)">
-                                <path d="M31,287L31,278" className="fill-none stroke-black stroke-width-1.5px "/>
-                            </g>
-                            <g transform="matrix(1,0,0,1,-31,13)">
-                                <path d="M31,287L31,278" className="fill-none stroke-black stroke-width-1.5px "/>
-                            </g>
-                            <g transform="matrix(1,0,0,1,0,-13)">
-                                <text x="2px" y="294.745px"
 
-                                      className="text-lg"
-                                >2018
-                                </text>
-                            </g>
-                            <path d="M31,287L31,278" className="fill-none stroke-black stroke-width-1.5px "/>
-
-                            <path
-                                className={styles.path}
-                                fill="none"
-                                stroke="#3D8C40"
-                                strokeWidth="3"
-                                d={appl_path}
-                            />
-                            <path
-                                className={styles.path}
-                                fill="none"
-                                stroke="#808080"
-                                strokeWidth="1"
-                                d={ms_path}
-                            />
-                            <path
-                                className={styles.path}
-                                fill="none"
-                                stroke="rgb(248 113 113)"
-                                strokeWidth="1"
-                                d={dis_path}
-                            />
-                            <path
-                                className={styles.path}
-                                fill="none"
-                                stroke="#808080"
-                                strokeWidth="1"
-                                d={jnj_path}
-                            />
-
-                            <animateTransform
-                                attributeName="transform"
-                                attributeType="XML"
-                                type="translate"
-                                from={`0,0`}
-                                to={`-640,0`}
-                                fill="freeze"
-                                dur={`4s`}
-                            />
-                        </g>
-                    </svg>
-                </div>
-                <div
-                    className="col-span-1 text-xs flex flex-col justify-between"
-                >
                     <div
-                        className="transform -rotate-90"
+                        className="flex space-x-3 text-sm mb-4"
                     >
 
+                        <div
+                            className="flex items-center"
+                        >
+                            <span className="inline-block rounded-full h-2 w-2 bg-[#3D8C40] mr-2"></span> Your stocks
+                        </div>
+                        <div
+                            className="flex items-center"
+                        >
+                            <span className="inline-block rounded-full h-2 w-2 bg-red-400 mr-2"></span> Apple
+                        </div>
+                        <div
+                            className="flex items-center"
+                        >
+                            <span className="inline-block rounded-full h-2 w-2 bg-gray-400 mr-2"></span> Other
+                        </div>
                     </div>
-                    {/*<div*/}
-                    {/*    className="mb-5 ml-2"*/}
-                    {/*>*/}
-                    {/*    Apple*/}
-                    {/*</div>*/}
+                    <div
+                        className="flex"
+                    >
+                        <div
+                            className="grid grid-cols-4 gap-0"
+                        >
+                            <div
+                                className="overflow-x-hidden border-r-2 border-gray-300 border-dashed col-span-3"
+                            >
+
+                                <svg viewBox="0 0 1000 300"
+                                     className={`w-[1000px] ${styles.graph}`}
+                                >
+                                    <g>
+
+                                        <g transform="matrix(-1,0,0,1,2950,45)">
+                                            <path d="M34,255L2950,255" className="fill-none stroke-black stroke-width-1.5px "/>
+                                        </g>
+                                        <g transform="matrix(-1,0,0,1,2950,-105)">
+                                            <path d="M34,255L2950,255"
+
+                                                  className="fill-none stroke-gray-500 stroke-width-1px "
+                                            />
+                                        </g>
+                                        <g transform="matrix(1,0,0,1,2885,13)">
+                                            <path d="M31,287L31,278" className="fill-none stroke-black stroke-width-1.5px "/>
+                                        </g>
+                                        <g transform="matrix(1,0,0,1,-31,13)">
+                                            <path d="M31,287L31,278" className="fill-none stroke-black stroke-width-1.5px "/>
+                                        </g>
+                                        <g transform="matrix(1,0,0,1,0,-13)">
+                                            <text x="2px" y="294.745px"
+
+                                                  className="text-lg"
+                                            >2018
+                                            </text>
+                                        </g>
+                                        <path d="M31,287L31,278" className="fill-none stroke-black stroke-width-1.5px "/>
+
+                                        <path
+                                            className={styles.path}
+                                            fill="none"
+                                            stroke="#3D8C40"
+                                            strokeWidth="3"
+                                            d={appl_path}
+                                        />
+                                        <path
+                                            className={styles.path}
+                                            fill="none"
+                                            stroke="#808080"
+                                            strokeWidth="1"
+                                            d={ms_path}
+                                        />
+                                        <path
+                                            className={styles.path}
+                                            fill="none"
+                                            stroke="rgb(248 113 113)"
+                                            strokeWidth="1"
+                                            d={dis_path}
+                                        />
+                                        <path
+                                            className={styles.path}
+                                            fill="none"
+                                            stroke="#808080"
+                                            strokeWidth="1"
+                                            d={jnj_path}
+                                        />
+
+                                        <animateTransform
+                                            attributeName="transform"
+                                            attributeType="XML"
+                                            type="translate"
+                                            from={`0,0`}
+                                            to={`-640,0`}
+                                            fill="freeze"
+                                            dur={`4s`}
+                                        />
+                                    </g>
+                                </svg>
+                            </div>
+                            <div
+                                className="col-span-1 text-xs flex flex-col justify-between"
+                            >
+                                <div
+                                    className="transform -rotate-90"
+                                >
+
+                                </div>
+                                {/*<div*/}
+                                {/*    className="mb-5 ml-2"*/}
+                                {/*>*/}
+                                {/*    Apple*/}
+                                {/*</div>*/}
+                            </div>
+                            <div
+                                className="col-span-2 text-center"
+                            ></div>
+                            <div
+                                className="col-span-2 text-center"
+                            >
+                                Now
+                            </div>
+                        </div>
+                        {/*<div*/}
+                        {/*    className="bg-white h-screen w-screen absolut"*/}
+                        {/*>*/}
+                        {/*    <EndScreen/>*/}
+                        {/*</div>*/}
+                    </div>
+
                 </div>
-                <div
-                className="col-span-2 text-center"
-                ></div>
-                <div
-                    className="col-span-2 text-center"
-                >
-                    Now
-                </div>
-            </div>
-                {/*<div*/}
-                {/*    className="bg-white h-screen w-screen absolut"*/}
-                {/*>*/}
-                {/*    <EndScreen/>*/}
-                {/*</div>*/}
-            </div>
+            )}
+
         </div>
     )
 }

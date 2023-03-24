@@ -1,4 +1,5 @@
 import {Share} from "react-bootstrap-icons";
+import Image from "next/image";
 
 export default function Test() {
 
@@ -6,19 +7,19 @@ export default function Test() {
         <div
             className="flex flex-col h-[80vh] w-screen pt-20 items-center justify-center"
         >
-            <h1
-                className="text-5xl text-red-500 mb-3"
-            >6Learn</h1>
+
+
+            <Image src="/sixlearn.png" className={"mb-5"} alt="logo" width="150" height="86" style={{marginLeft: "-10px"}}/>
 
             <div
                 className="flex flex-col items-center"
             >
                 <p
-                    className="text-sm text-gray-500 w-1/2 text-center"
+                    className="text-sm text-gray-500 w-3/4 text-center"
                 >
                     Surprisingly, Apple performed badly over this time frame.
                     Some lucky investors gained a lot from Microsoft.
-                    A balanced investor might have achieved earnings of XX%,
+                    A balanced investor might have achieved earnings of 12%,
                     performing much better than those who only bough Apple stock
                 </p>
                 <h3
@@ -36,7 +37,7 @@ export default function Test() {
                             className="text-xl"
                         >Total</h3>
                         <div
-                            className="my-5"
+                            className="my-5 text-green-500 font-bold"
                         >
                             +154 CHF
                         </div>
@@ -48,7 +49,7 @@ export default function Test() {
                             className="text-xl"
                         >Relative</h3>
                         <div
-                            className="my-5"
+                            className="my-5 text-green-500 font-bold"
                         >+20%
                         </div>
                     </div>

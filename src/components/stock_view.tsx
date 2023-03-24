@@ -1,7 +1,8 @@
 import StockCard from "@/components/stock_card";
 import {useEffect, useState} from "react";
+import useBus from "use-bus";
 
-export function StockView(props: {showFull: boolean}) {
+export function StockView() {
     const [budget, setBudget] = useState(10000)
     const [showFull, setShowFull] = useState(true)
 
@@ -26,12 +27,9 @@ export function StockView(props: {showFull: boolean}) {
         }
     ]
 
-    useEffect(() => {
-        if (!props.showFull) {
-            setShowFull(false)
-        }
-    }, [props.showFull])
-
+    useBus('start', () => {
+        setShowFull(false)
+    })
 
     return (
         <div

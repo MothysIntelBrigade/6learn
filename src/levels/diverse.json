@@ -20,7 +20,7 @@
         "date": "2015-03-02",
         "news": [],
         "dialogs": [
-          "Buy the stocks you think will develop best over the next 14 months"
+          "Buy the stocks you think will develop best over the next 14 months. You have a budget of $100 and can choose between Amazon, Apple and Google. Adjust your portfolio using the + and - signs."
         ]
       },
       {
@@ -32,7 +32,9 @@
             "title": "Microsoft cloud business exceeds expectations"
           }
         ],
-        "dialogs": []
+        "dialogs": [
+          "Let's see how the market evolves..."
+        ]
       },
       {
         "can_edit_stocks": false,
@@ -40,7 +42,7 @@
         "news": [],
         "dialogs": [
           "Surprisingly, Apple performed badly over this time frame. Some lucky investors gained a lot from Microsoft",
-          "A balanced investor might have achieved earnings of XX%, performing much better than those who only bough Apple stock"
+          "A balanced investor might have achieved earnings of 12%, performing much better than those who only bough Apple stock"
         ]
       }
     ]
