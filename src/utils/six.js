@@ -56,7 +56,5 @@ export function getEODEquidistant(ticker, start, end, points) {
         })
 
         return formatted;
-
     })
-
 }

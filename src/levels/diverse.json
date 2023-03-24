@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "id": 1,
+    "id": 2,
     "title": "Diversification matters",
-    "description": "Diversification means \"not putting all your eggs into one basket\": if you invest in a single stock or one sector only, you risk great losses if that sector doesn't develop well"
+    "description": "Diversification means \"not putting all your eggs into one basket\": if you invest in a single stock or one sector only, you risk great losses if that stock or sector doesn't develop well. So you should generally aim for a diverse portfolio"
   },
   "game": {
     "start": "2015-03-02",
